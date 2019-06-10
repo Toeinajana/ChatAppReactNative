@@ -3,6 +3,8 @@ import { View, Text } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import LogIn from "./components/login";
 import chatPage from "./components/chatpage";
+// import Auth from "./components/auth";
+
 
 
 class App extends React.Component {
@@ -22,6 +24,9 @@ const AppNavigator = createStackNavigator({
   chatpage: {
     screen: chatPage
   },
+  // auth: {
+  //   screen: Auth
+  // },
 });
 
 export default createAppContainer(AppNavigator);
