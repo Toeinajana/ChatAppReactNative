@@ -19,7 +19,7 @@ mongo.connect('mongodb://127.0.0.1:27017/appchat', function (err, db) {
     console.log('Mongo connected');
 
 
-
+console.log(io)
     io.on("connection", socket => {
 
        
@@ -30,7 +30,7 @@ mongo.connect('mongodb://127.0.0.1:27017/appchat', function (err, db) {
 
         socket.on("chat message", mgs => {
 
-            //display messages
+            //display message
 
             console.log(mgs);
 
