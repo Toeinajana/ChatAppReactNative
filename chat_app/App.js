@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import LogIn from "./components/login";
 import chatPage from "./components/chatpage";
-// import Auth from "./components/auth";
+import Camera from "./components/camera";
 
 
 
@@ -24,9 +24,9 @@ const AppNavigator = createStackNavigator({
   chatpage: {
     screen: chatPage
   },
-  // auth: {
-  //   screen: Auth
-  // },
+  camera: {
+    screen: Camera
+  },
 });
 
 export default createAppContainer(AppNavigator);
