@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import moment from "moment";
 
 import {
   TextInput,
@@ -28,37 +29,40 @@ const { width: WIDTH } = Dimensions.get('window')
 export default class ChatPage extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: (navigation.state.params || {}).name || 'Chat!',
+    title: (navigation.state.params || {}).name || 'Welcome to chat room!',
   });
 
   constructor(props) {
     super(props)
 
-
-
     this.state = {
-
       chatMessage: "",
-      chatMessages: []
-
+      chatMessages: [],
+      name: "",
+      currentDate: new Date(),
+      //markedDate: moment(new Date()).format(LT)
     };
-
 
   }
 
-
-
   componentDidMount() {
+    const userName = this.props.navigation.state.params.name
+    this.setState({name: userName})
     this.socket = io("http://10.1.5.229:5000");
     this.socket.on("chat message", msg => {
-
-      this.setState({ chatMessages: [...this.state.chatMessages, msg] });
+        
+        const messageWithName = `${msg.name}: ${msg.chat}`
+      this.setState({ chatMessages: [...this.state.chatMessages, messageWithName] });
     });
   }
 
   submitChat() {
-
-    this.socket.emit("chat message", this.state.chatMessage);
+    const chatObj = {
+      name: this.state.name,
+      chat: this.state.chatMessage,
+      
+    }
+    this.socket.emit("chat message", chatObj);
     this.setState({ chatMessage: "" });
 
   }
@@ -73,7 +77,9 @@ export default class ChatPage extends React.Component {
 
   render() {
 
-    const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}>{chatMessage}{"\n"}{"________________________"}{"\n"}</Text>)
+    const today = this.state.currentDate;
+    const time = moment(today).format("LT");
+    const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{time}{"\n"}{"________________________"}{"\n"}</Text></Text>)
 
     return (
 
@@ -121,8 +127,8 @@ const styles = StyleSheet.create({
     opacity: 0.80,
 
   },
-  list: {
-    paddingHorizontal: 17,
+  time: {
+    alignSelf: 'flex-end'
   },
 
   icon:{

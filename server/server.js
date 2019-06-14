@@ -1,16 +1,26 @@
 const express = require("express");
-const mongo = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 const app = express();
 const server = require("http").createServer(app);
 const io = require('socket.io').listen(server);
 const port = 5000;
 
+
 // let Users = require('./user.model');
 
-//connect to mongo
-mongo.connect('mongodb://127.0.0.1:27017/appchat', function (err, db) {
 
-   var db = db.db('appchat');
+//create model
+const userSchema = new mongoose.Schema({
+    name: String,
+    chat: String,
+    date: { type: Date, default: Date.now() },
+});
+
+const User = mongoose.model('user', userSchema);
+//connect to mongo
+mongoose.connect('mongodb://127.0.0.1:27017/appchat',function (err, db) {
+
+   var db = mongoose.connection;
 
     if (err) {
         throw err;
@@ -21,8 +31,6 @@ mongo.connect('mongodb://127.0.0.1:27017/appchat', function (err, db) {
     /// socket connection
     io.on("connection", socket => {
 
-       
-
         console.log("a user connected to socket.io");
 
         //listen to message
@@ -31,14 +39,20 @@ mongo.connect('mongodb://127.0.0.1:27017/appchat', function (err, db) {
 
             //display message
 
-            console.log(mgs);
+            console.log("server", mgs);
 
-            
+            user = new User({name: mgs.name, chat: mgs.chat})
+            user.save(()=>{
+                console.log('saved')
+            })
+        
+            io.emit("chat message", user);
 
-            io.emit("chat message", mgs);
         });
 
     });
+
+
 
 
   server.listen(port, () => {console.log("server running on port : " + port)});
