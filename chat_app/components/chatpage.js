@@ -49,7 +49,7 @@ export default class ChatPage extends React.Component {
 
 
   componentDidMount() {
-    this.socket = io("http://192.168.1.141:5000");
+    this.socket = io("http://10.1.5.229:5000");
     this.socket.on("chat message", msg => {
 
       this.setState({ chatMessages: [...this.state.chatMessages, msg] });

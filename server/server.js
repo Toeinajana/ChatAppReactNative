@@ -7,7 +7,7 @@ const port = 5000;
 
 // let Users = require('./user.model');
 
-// connect to mongo
+//connect to mongo
 mongo.connect('mongodb://127.0.0.1:27017/appchat', function (err, db) {
 
    var db = db.db('appchat');
@@ -15,11 +15,10 @@ mongo.connect('mongodb://127.0.0.1:27017/appchat', function (err, db) {
     if (err) {
         throw err;
     }
-
     console.log('Mongo connected');
+  });
 
-
-console.log(io)
+    /// socket connection
     io.on("connection", socket => {
 
        
@@ -37,14 +36,12 @@ console.log(io)
             
 
             io.emit("chat message", mgs);
+        });
 
-
-
-        })
     });
 
-  });
 
-    server.listen(port, () => console.log("server running on port : " + port));
+  server.listen(port, () => {console.log("server running on port : " + port)});
+
 
     
