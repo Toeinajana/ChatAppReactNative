@@ -30,6 +30,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/appchat',function (err, db) {
     console.log('Mongo connected');
   });
 
+  // get data
   app.get('/chat_app', function(req, res){
      User.find({}, function(err,users){
 

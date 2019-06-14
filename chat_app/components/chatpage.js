@@ -50,9 +50,9 @@ export default class ChatPage extends React.Component {
 
     console.log(this.state)
    // get data from database
-    axios('http://localhost:5000/chat_app').then((data)=>{
+    axios('http://localhost:5000/chat_app').then((response)=>{
       
-        this.setState({users: data});
+        this.setState({users: response.data});
 
     })
     .catch(function(error){
@@ -102,7 +102,7 @@ export default class ChatPage extends React.Component {
     const today = this.state.currentDate;
     const time = moment(today).format("LT");
     //chat obj
-    const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{"      "}{"("}{time}{")"}{"\n"}{"________________________"}{"\n"}</Text></Text>)
+    const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{"         "}{"("}{time}{")"}{"\n"}{"________________________________"}{"\n"}</Text></Text>)
 
     return (
 
@@ -151,7 +151,12 @@ const styles = StyleSheet.create({
 
   },
   time: {
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
+    fontSize: 12,
+  },
+  line: {
+
+    justifyContent:'center',
   },
 
   icon:{
