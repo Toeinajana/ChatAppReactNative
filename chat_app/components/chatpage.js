@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import moment from "moment";
+import axios from "axios"
 
 import {
   TextInput,
@@ -46,16 +47,36 @@ export default class ChatPage extends React.Component {
   }
 
   componentDidMount() {
+
+    console.log(this.state)
+   // get data from database
+    axios('http://localhost:5000/chat_app').then((data)=>{
+      
+        this.setState({users: data});
+
+    })
+    .catch(function(error){
+
+      console.log(error);
+    })
+    
+    
+    //user's name 
     const userName = this.props.navigation.state.params.name
     this.setState({name: userName})
+    //call socket
     this.socket = io("http://10.1.5.229:5000");
     this.socket.on("chat message", msg => {
         
+      // message obj
         const messageWithName = `${msg.name}: ${msg.chat}`
-      this.setState({ chatMessages: [...this.state.chatMessages, messageWithName] });
+      this.setState({ chatMessages: [...this.state.chatMessages, messageWithName] }, ()=>{
+        console.log(this.state)
+      });
     });
   }
 
+  // send chat
   submitChat() {
     const chatObj = {
       name: this.state.name,
@@ -77,9 +98,11 @@ export default class ChatPage extends React.Component {
 
   render() {
 
+    //time
     const today = this.state.currentDate;
     const time = moment(today).format("LT");
-    const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{time}{"\n"}{"________________________"}{"\n"}</Text></Text>)
+    //chat obj
+    const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{"      "}{"("}{time}{")"}{"\n"}{"________________________"}{"\n"}</Text></Text>)
 
     return (
 

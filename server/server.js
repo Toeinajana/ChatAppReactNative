@@ -4,6 +4,7 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require('socket.io').listen(server);
 const port = 5000;
+var db;
 
 
 // let Users = require('./user.model');
@@ -20,12 +21,26 @@ const User = mongoose.model('user', userSchema);
 //connect to mongo
 mongoose.connect('mongodb://127.0.0.1:27017/appchat',function (err, db) {
 
-   var db = mongoose.connection;
+    db = mongoose.connection;
 
     if (err) {
         throw err;
     }
+    
     console.log('Mongo connected');
+  });
+
+  app.get('/chat_app', function(req, res){
+     User.find({}, function(err,users){
+
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.json(users); // from database
+        }
+
+      });
   });
 
     /// socket connection
