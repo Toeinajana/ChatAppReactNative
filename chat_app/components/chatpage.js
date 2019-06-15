@@ -53,6 +53,7 @@ export default class ChatPage extends React.Component {
     axios('http://localhost:5000/chat_app').then((response)=>{
       
         this.setState({users: response.data});
+        // console.log(this.state);
 
     })
     .catch(function(error){
@@ -65,7 +66,7 @@ export default class ChatPage extends React.Component {
     const userName = this.props.navigation.state.params.name
     this.setState({name: userName})
     //call socket
-    this.socket = io("http://10.1.5.229:5000");
+    this.socket = io("http://192.168.1.141:5000");
     this.socket.on("chat message", msg => {
         
       // message obj
@@ -102,7 +103,9 @@ export default class ChatPage extends React.Component {
     const today = this.state.currentDate;
     const time = moment(today).format("LT");
     //chat obj
-    const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{"         "}{"("}{time}{")"}{"\n"}{"________________________________"}{"\n"}</Text></Text>)
+    const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{"  "}{"("}{time}{")"}{"\n"}{"________________________________"}{"\n"}</Text></Text>)
+    // const users = this.state.users.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{"  "}{"("}{time}{")"}{"\n"}{"________________________________"}{"\n"}</Text></Text>)
+
 
     return (
 
@@ -111,6 +114,8 @@ export default class ChatPage extends React.Component {
         <View style={styles.container}>
 
           <ScrollView style={styles.container2}>
+          {/* <Text style={styles.chatText}>{users}</Text> */}
+
 
             <Text style={styles.chatText}>{chatMessages}</Text>
 
