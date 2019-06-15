@@ -37,7 +37,7 @@ npm install -g nodemon
 nodemon 
 ```
 
-### 3. Go to reactApp path inside React folder
+### 3. Go to chat_app path inside React folder
 ```
 cd test-app
 ```
