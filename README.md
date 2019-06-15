@@ -1,6 +1,6 @@
 # Chatty is a chat app
 
-This project is about React Native, NodeJS and MongoDB.
+This project is about React Native, NodeJS, Socket.io and MongoDB.
 
 ** PS. I don't have time to work on getting data from database and show, but it works and data is saved, frontend and backend are connected.
 
@@ -17,9 +17,9 @@ brew install mongodb
 cd server
 ```
 
-#### 2.1 Install Express, body-parser, cors and mongoose in backend file
+#### 2.1 Install Express, cors,socket.io and mongoose in backend file
 ```
-npm install express body-parser mongoose
+npm install express body-parser mongoose socket.io
 ```
 
 - Start MongoDB
@@ -37,9 +37,14 @@ npm install -g nodemon
 nodemon 
 ```
 
-### 3. Go to chat_app path inside React folder
+### 3. Go to chat_app path inside Finalproject folder
 ```
-cd test-app
+cd chat_app
+```
+
+#### Install socket.io-client in frontend file
+```
+npm install socket.io-client
 ```
 
 - Start React app
