@@ -1,10 +1,6 @@
 
 import React, {Component} from 'react';
-// import { createStackNavigator, createAppContainer, NavigationEvents } from 'react-navigation';
-// import {StackNavigator} from 'react-navigation';
 
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import {
   TextInput,
   Dimensions, 
@@ -12,25 +8,16 @@ import {
   Text, View, 
   ImageBackground,
   TouchableOpacity,
-  AsyncStorage
 } from 'react-native';
 
 
-// import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-// library.add(faUser, faLock)
 
 const { width: WIDTH } = Dimensions.get('window')
 
 export default class LogIn extends React.Component {
 
-  // constructor(props){
-  //     super(props)
-      
-  //     // this.state = { name:''};
-      
-    //}
-
+  
     handleChange = name => this.setState({name});
     
     state = { name:''};
@@ -41,23 +28,6 @@ export default class LogIn extends React.Component {
       this.props.navigation.navigate('chatpage', { name: this.state.name })
       
     }
-    // login = async () => {
-         
-    //   // alert(this.state.name);
-
-    //   if(this.props.name = null){
-
-    //    alert('Please enter your name')
-
-    //   }
-    //   else{
-
-    //   await AsyncStorage.setItem('name', this.state.name);
-    //   User.name = this.state.name;
-    //   this.props.navigation.navigate('chatPage');
-
-    //   }
-    // }
     
 componentDidMount(){
   console.log(this.props)
@@ -72,7 +42,7 @@ componentDidMount(){
 
          <View>
          
-         {/* <FontAwesomeIcon icon={ faUser } style={ styles.iconInput } /> */}
+         
            <TextInput
                id={'name'}
                style={styles.textInput}
@@ -80,25 +50,11 @@ componentDidMount(){
                placeholderTextColor={'black'}
                value = {this.state.name}
                onChangeText={this.handleChange}
-              //  onChangeText={(text) => {
-              //    this.setState({
-              //      name: text,
-              //    });
-              //  }}
-              //  value = {this.state.name}
+             
             />
 
          </View>
-         {/* <View>
         
-         <TextInput
-               style={styles.textInput2}
-               placeholder={'Password'}
-               placeholderTextColor={'black'}
-            />
-
-         </View> */}
-
          <TouchableOpacity style={styles.loginBtn} id={'loginbtn'} onPress={this.logInbtn}>
            <Text style={styles.loginText}>Enter</Text>
          </TouchableOpacity>

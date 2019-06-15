@@ -22,6 +22,9 @@
 	<string>1</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Chatty would like to access your camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>Chatty would like to access your Microphone</string>
+
 
 </dict>
 </plist>

@@ -2,45 +2,29 @@
 import React, { Component } from 'react';
 
 import {
-    TextInput,
-    Dimensions,
+   
     StyleSheet,
-    Text, View,
-    ImageBackground,
+    View,
     TouchableOpacity,
-    AsyncStorage,
     Image
 } from 'react-native';
 
 import { RNCamera } from 'react-native-camera';
 
-const { width: WIDTH } = Dimensions.get('window')
 
 export default class CameraPage extends React.Component {
 
-    // constructor(props){
-    //     super(props)
-
-    //     // this.state = { name:''};
-
-    //}
-
+   
     takePicture = async () => {
         if (this.camera) {
             const options = { quality: 0.5, base64: true };
             const data = await this.camera.takePictureAsync(options);
             console.log(data.uri);
+            
+            this.props.navigation.navigate('chatpage')
         }
     };
 
-
-
-
-    logInbtn = () => {
-
-        this.props.navigation.navigate('chatpage', { name: this.state.name })
-
-    }
 
 
     componentDidMount() {

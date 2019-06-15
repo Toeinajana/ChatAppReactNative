@@ -10,18 +10,11 @@ import {
   Text, View,
   ImageBackground,
   TouchableOpacity,
-  AsyncStorage,
   ScrollView,
-  FlatList,
   Image
 } from 'react-native';
 
-import { GiftedChat } from 'react-native-gifted-chat';
 import io from "socket.io-client";
-import login from '../components/login'
-import User from '../user'
-
-
 
 
 const { width: WIDTH } = Dimensions.get('window')
@@ -41,7 +34,6 @@ export default class ChatPage extends React.Component {
       chatMessages: [],
       name: "",
       currentDate: new Date(),
-      //markedDate: moment(new Date()).format(LT)
     };
 
   }
@@ -104,7 +96,6 @@ export default class ChatPage extends React.Component {
     const time = moment(today).format("LT");
     //chat obj
     const chatMessages = this.state.chatMessages.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{"  "}{"("}{time}{")"}{"\n"}{"________________________________"}{"\n"}</Text></Text>)
-    // const users = this.state.users.map(chatMessage => <Text key={chatMessage}> {chatMessage} <Text style={styles.time}>{"  "}{"("}{time}{")"}{"\n"}{"________________________________"}{"\n"}</Text></Text>)
 
 
     return (
@@ -114,7 +105,7 @@ export default class ChatPage extends React.Component {
         <View style={styles.container}>
 
           <ScrollView style={styles.container2}>
-          {/* <Text style={styles.chatText}>{users}</Text> */}
+         
 
 
             <Text style={styles.chatText}>{chatMessages}</Text>
@@ -216,12 +207,8 @@ const styles = StyleSheet.create({
     marginVertical: 14,
     flex: 1,
     flexDirection: 'row',
-    // backgroundColor:"#eeeeee",
     borderRadius: 300,
     padding: 5,
-    // backgroundColor:'rgba(255,153,51,1)',
-
-
 
 
   },

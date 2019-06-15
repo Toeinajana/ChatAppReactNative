@@ -7,9 +7,6 @@ const port = 5000;
 var db;
 
 
-// let Users = require('./user.model');
-
-
 //create model
 const userSchema = new mongoose.Schema({
     name: String,
