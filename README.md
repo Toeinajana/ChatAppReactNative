@@ -2,6 +2,8 @@
 
 This project is about React Native, NodeJS and MongoDB.
 
+** PS. I don't have time to work on getting data from database and show, but it works and data is saved, frontend and backend are connected.
+
 ## Getting Started
 
 
@@ -54,5 +56,3 @@ react-native run-ios
 ```
 react-native run-android
 ```
-
-PS. I don't have time to work on showing the data from database , but it works and frontend and backend are connected.
