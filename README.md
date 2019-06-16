@@ -2,7 +2,7 @@
 
 This project is about React Native, NodeJS, Socket.io and MongoDB.
 
-** PS. I don't have time to work on getting data from database and show, but it works and data is saved, frontend and backend are connected.
+** PS. I didn't have time to work on getting data from database and show, but it works and data is saved, frontend and backend are connected.
 
 ## Getting Started
 
